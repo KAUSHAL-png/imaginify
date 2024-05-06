@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import { Document, Schema, model, models } from "mongoose";
 
-export type TImage = Document & {
+export interface IImage extends Document {
   title: string;
   transformationType: string;
   publicId: string;
@@ -19,17 +19,17 @@ export type TImage = Document & {
   };
   createdAt?: Date;
   updatedAt?: Date;
-};
+}
 
 const ImageSchema = new Schema({
   title: { type: String, required: true },
   transformationType: { type: String, required: true },
   publicId: { type: String, required: true },
-  secureUrl: { type: URL, required: true },
+  secureURL: { type: String, required: true },
   width: { type: Number },
   height: { type: Number },
-  config: { type: Number },
-  transformationUrl: { type: URL },
+  config: { type: Object },
+  transformationUrl: { type: String },
   aspectRatio: { type: String },
   color: { type: String },
   prompt: { type: String },
